@@ -1,4 +1,5 @@
 import React from 'react'
+import { FiSend } from "react-icons/fi";
 import { AiOutlineHome, AiFillHome, AiOutlineTwitter } from "react-icons/ai";
 import { IoPersonOutline, IoPerson, IoSettings, IoSettingsOutline} from "react-icons/io5";
 
@@ -20,7 +21,11 @@ function NavBar() {
             <IoSettingsOutline className='h-6 w-6'/>
             <h1 className='hidden md:inline'>Settings</h1>
           </div>
+          <div className='flex md:hidden space-x-2 items-center justify-start bg-sky-500 hover:bg-neutral-800 active:bg-sky-600 rounded-lg cursor-pointer md:w-36 p-3 lg:w-40'>
+            <FiSend className=' h-5 w-5'/>
+          </div>
         </div>
+        <button className='hidden md:inline bg-sky-500 p-2 rounded-full hover:opacity-80 active:opacity-100 font-semibold'>Mint</button>
       </div>
     </div>
   )
