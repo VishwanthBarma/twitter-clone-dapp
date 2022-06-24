@@ -21,6 +21,9 @@ export default function Home() {
           <TweetPost />
           <TweetPost />
           <TweetPost />
+          <TweetPost />
+          <TweetPost />
+          <TweetPost />
         </div>
       </div>
 
