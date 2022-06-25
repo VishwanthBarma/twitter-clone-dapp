@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@metamask/detect-provider": "^1.2.0",
     "@openzeppelin/contracts": "^4.6.0",
     "next": "12.1.6",
     "react": "18.2.0",
@@ -19,6 +20,7 @@
     "@nomiclabs/hardhat-ethers": "^2.0.6",
     "@nomiclabs/hardhat-waffle": "^2.0.3",
     "autoprefixer": "^10.4.7",
+    "better-react-spinkit": "^2.0.4",
     "chai": "^4.3.6",
     "eslint": "8.18.0",
     "eslint-config-next": "12.1.6",
