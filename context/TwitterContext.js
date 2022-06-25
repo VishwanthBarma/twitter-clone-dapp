@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { createContext, useEffect, useState } from "react";
 import detectEthereumProvider from "@metamask/detect-provider";
+import { client } from "../lib/client";
 
 export const TwitterContext = createContext();
 
@@ -22,7 +23,7 @@ export const TwitterProvider = ({ children }) => {
         .request({ method: "eth_accounts" })
         .then(handleAccountsChanged)
         .catch((err) => {
-          console.error(err);
+          console.log(err);
         });
     } catch (error) {
       console.log(error);
@@ -43,7 +44,7 @@ export const TwitterProvider = ({ children }) => {
           if (err.code === 4001) {
             console.log("Please connect to MetaMask.");
           } else {
-            console.error(err);
+            console.log(err);
           }
         });
     } catch (error) {
@@ -58,6 +59,30 @@ export const TwitterProvider = ({ children }) => {
     } else {
       setAppStatus("connected");
       setCurrentAccount(accounts[0]);
+      createUserAccount(accounts[0]);
+    }
+  };
+
+  const createUserAccount = async (userWalletAddress = currentAccount) => {
+    const provider = await detectEthereumProvider();
+
+    if (provider !== window.ethereum) return setAppStatus("noMetaMask");
+
+    try {
+      const userDoc = {
+        _type: "users",
+        _id: userWalletAddress,
+        name: "Unnamed",
+        isProfileImageNft: false,
+        profileImage:
+          "https://www.thehindu.com/sci-tech/technology/internet/article17759222.ece/alternates/FREE_1200/02th-egg-person",
+        walletAddress: userWalletAddress,
+      };
+
+      await client.createIfNotExists(userDoc);
+    } catch (error) {
+      router.push("/");
+      setAppStatus("error");
     }
   };
 

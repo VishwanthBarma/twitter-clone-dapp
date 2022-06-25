@@ -1,11 +1,11 @@
 {
   "root": true,
+  "api": {
+    "projectId": "p8blptwn",
+    "dataset": "production"
+  },
   "project": {
     "name": "pink-mantis"
-  },
-  "api": {
-    "projectId": "5hoe4xqm",
-    "dataset": "production"
   },
   "plugins": [
     "@sanity/base",
