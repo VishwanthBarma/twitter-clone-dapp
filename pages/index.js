@@ -1,9 +1,13 @@
 import Head from "next/head";
 import Image from "next/image";
+import { useContext } from "react";
 import TweetBox from "../components/Tweet/TweetBox";
 import TweetPost from "../components/Tweet/TweetPost";
+import { TwitterContext } from "../context/TwitterContext";
 
 export default function Home() {
+  const { tweets } = useContext(TwitterContext);
+
   return (
     <div>
       <Head>
@@ -18,12 +22,9 @@ export default function Home() {
         </div>
         <TweetBox />
         <div>
-          <TweetPost />
-          <TweetPost />
-          <TweetPost />
-          <TweetPost />
-          <TweetPost />
-          <TweetPost />
+          {tweets?.map((tweet) => (
+            <TweetPost data={tweet} />
+          ))}
         </div>
       </div>
     </div>

@@ -34,10 +34,10 @@ function Layout({ children }) {
   const userLoggedIn = (
     <>
       <NavBar />
-      <div className="md:w-3/5 w-full max-h-screen overflow-y-scroll z-0">
+      <div className="max-h-screen  overflow-y-scroll w-full z-0">
         <main>{children}</main>
       </div>
-      <div className="hidden md:inline">
+      <div className="hidden sm:inline min-w-[13rem] lg:min-w-[20rem]">
         <Widgets />
       </div>
     </>
