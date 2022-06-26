@@ -8,9 +8,32 @@ import {
   IoSettingsOutline,
 } from "react-icons/io5";
 import { TwitterContext } from "../../context/TwitterContext";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 function NavBar() {
   const { currentUser, currentAccount } = useContext(TwitterContext);
+  const router = useRouter();
+  const navData = [
+    {
+      title: "Home",
+      path: "/",
+      icon: <AiOutlineHome className="h-6 w-6" />,
+      active: <AiFillHome className="h-6 w-6" />,
+    },
+    {
+      title: "Profile",
+      path: "/profile",
+      icon: <IoPersonOutline className="h-6 w-6" />,
+      active: <IoPerson className="h-6 w-6" />,
+    },
+    {
+      title: "Settings",
+      path: "/settings",
+      icon: <IoSettingsOutline className="h-6 w-6" />,
+      active: <IoSettings className="h-6 w-6" />,
+    },
+  ];
 
   return (
     <div className="bg-neutral-900 text-white lg:pl-[8rem]">
@@ -19,23 +42,33 @@ function NavBar() {
           <div className="flex items-center justify-center">
             <AiOutlineTwitter className="h-12 w-12 md:h-14 md:w-14" />
           </div>
+
           <div className="flex flex-col space-y-2 justify-center ml-auto mr-auto">
-            <div className="flex space-x-2 items-center justify-start hover:bg-neutral-800 rounded-lg cursor-pointer md:w-36 p-3 lg:w-40">
-              <AiFillHome className="h-6 w-6" />
-              <h1 className="font-bold hidden md:inline">Home</h1>
-            </div>
-            <div className="flex space-x-2 items-center justify-start hover:bg-neutral-800 rounded-lg cursor-pointer md:w-36 p-3 lg:w-40">
-              <IoPersonOutline className="h-6 w-6" />
-              <h1 className="hidden md:inline">Profile</h1>
-            </div>
-            <div className="flex space-x-2 items-center justify-start hover:bg-neutral-800 rounded-lg cursor-pointer md:w-36 p-3 lg:w-40">
-              <IoSettingsOutline className="h-6 w-6" />
-              <h1 className="hidden md:inline">Settings</h1>
-            </div>
+            {navData.map((item) => (
+              <Link href={item.path} passHref>
+                <a>
+                  <div className="flex space-x-2 items-center justify-start hover:bg-neutral-800 rounded-lg cursor-pointer md:w-36 p-3 lg:w-40">
+                    {router.pathname.split("/")[1] === item.path.split("/")[1]
+                      ? item.active
+                      : item.icon}
+                    <h1
+                      className={`${
+                        router.pathname.split("/")[1] ===
+                          item.path.split("/")[1] && "font-bold"
+                      } hidden md:inline`}
+                    >
+                      {item.title}
+                    </h1>
+                  </div>
+                </a>
+              </Link>
+            ))}
+
             <div className="flex md:hidden space-x-2 items-center justify-start bg-sky-500 hover:bg-neutral-800 active:bg-sky-600 rounded-lg cursor-pointer md:w-36 p-3 lg:w-40">
               <FiSend className=" h-5 w-5" />
             </div>
           </div>
+
           <button className="hidden md:inline bg-sky-500 p-2 rounded-full hover:opacity-80 active:opacity-100 font-semibold">
             Mint
           </button>
