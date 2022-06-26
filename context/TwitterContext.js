@@ -152,6 +152,7 @@ export const TwitterProvider = ({ children }) => {
     <TwitterContext.Provider
       value={{
         appStatus,
+        setAppStatus,
         currentAccount,
         connectToWallet,
         fetchTweets,

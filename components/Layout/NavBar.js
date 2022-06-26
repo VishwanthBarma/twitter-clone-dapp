@@ -9,7 +9,9 @@ import {
 } from "react-icons/io5";
 import { TwitterContext } from "../../context/TwitterContext";
 import { useRouter } from "next/router";
+import Modal from "react-modal";
 import Link from "next/link";
+import ProfileImageMinter from "../MintingModel/ProfileImageMinter";
 
 function NavBar() {
   const { currentUser, currentAccount } = useContext(TwitterContext);
@@ -69,7 +71,12 @@ function NavBar() {
             </div>
           </div>
 
-          <button className="hidden md:inline bg-sky-500 p-2 rounded-full hover:opacity-80 active:opacity-100 font-semibold">
+          <button
+            className="hidden md:inline bg-sky-500 p-2 rounded-full hover:opacity-80 active:opacity-100 font-semibold"
+            onClick={() =>
+              router.push(`${router.pathname}/?mint=${currentAccount}`)
+            }
+          >
             Mint
           </button>
         </div>
@@ -86,6 +93,28 @@ function NavBar() {
           </div>
         </div>
       </div>
+
+      <Modal
+        isOpen={Boolean(router.query.mint)}
+        onRequestClose={() => router.back()}
+        style={{
+          content: {
+            top: "30%",
+            left: "50%",
+            right: "auto",
+            bottom: "auto",
+            padding: 0,
+            border: "none",
+            backgroundColor: "",
+            transform: "translate(-50%, -50%)",
+          },
+          overlay: {
+            backgroundColor: "#334250a7",
+          },
+        }}
+      >
+        <ProfileImageMinter />
+      </Modal>
     </div>
   );
 }

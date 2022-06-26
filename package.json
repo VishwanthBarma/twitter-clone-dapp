@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.9.3",
     "@metamask/detect-provider": "^1.2.0",
     "@openzeppelin/contracts": "^4.6.0",
     "@sanity/client": "^3.0.4",
@@ -16,6 +17,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
+    "react-modal": "^3.15.1",
     "timeago.js": "^4.0.2"
   },
   "devDependencies": {
