@@ -81,18 +81,24 @@ function NavBar() {
           </button>
         </div>
 
-        <div className="md:p-3 mb-10 cursor-pointer flex items-center justify-center space-x-1">
-          <div className="bg-white shrink-0 h-10 w-10 rounded-full flex justify-center items-center overflow-hidden">
-            <img className="shirink-0" src={currentUser.profileImage}></img>
-          </div>
-          <div className="hidden md:inline overflow-x-scroll">
-            <h1 className="font-semibold text-sm">{currentUser.name}</h1>
-            <h1 className="text-[12px] text-slate-500">
-              @{currentAccount.slice(0, 3)}...{currentAccount.slice(39)}
-            </h1>
-          </div>
+
+        <Link href={"/profile"} passHref>
+          <a>
+            <div className="md:p-3 mb-10 cursor-pointer flex items-center justify-center space-x-1">
+              <div className="bg-white shrink-0 h-10 w-10 rounded-full flex justify-center items-center overflow-hidden">
+                <img className="shirink-0" src={currentUser.profileImage}></img>
+              </div>
+              <div className="hidden md:inline overflow-x-scroll">
+                <h1 className="font-semibold text-sm">{currentUser.name}</h1>
+                <h1 className="text-[12px] text-slate-500">
+                  @{currentAccount.slice(0, 3)}...{currentAccount.slice(39)}
+                </h1>
+              </div>
+            </div>
+          </a>
+        </Link>
+
         </div>
-      </div>
 
       <Modal
         isOpen={Boolean(router.query.mint)}

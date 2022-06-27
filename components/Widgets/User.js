@@ -9,7 +9,7 @@ function User() {
           src="https://i.pinimg.com/236x/b9/91/cc/b991cc42242c20837c25ca5f2ee6f5ba.jpg"
         ></img>
       </div>
-      <h1 className="font-semibold text-sm">Bhavani</h1>
+      <h1 className="font-semibold text-sm">in developement</h1>
     </div>
   );
 }

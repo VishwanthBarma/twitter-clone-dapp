@@ -4,6 +4,7 @@ import { TwitterContext } from "../../context/TwitterContext";
 import FinishedState from "./FinishedState";
 import InitialState from "./InitialState";
 import LoadingState from "./LoadingState";
+import { pinJSONToIPFS, pinFileToIPFS } from "../../lib/pinata";
 
 function ProfileImageMinter() {
   const { currentUser, currentAccount } = useContext(TwitterContext);
@@ -14,7 +15,17 @@ function ProfileImageMinter() {
   const [description, setDescription] = useState("");
   const [profileImage, setProfileImage] = useState(null);
 
-  const mint = () => {};
+  const mint = async () => {
+    if (!name || !description || !profileImage) return;
+    setStatus("loading");
+
+    const pinataMetadata = {
+      name: `${name} - ${description}`,
+    };
+
+    const ipfsImageHash = await pinFileToIPFS(profileImage, pinataMetadata);
+    
+  };
 
   const modalChildren = (modalStatus = status) => {
     switch (modalStatus) {
