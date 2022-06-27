@@ -23,58 +23,6 @@ export const TwitterProvider = ({ children }) => {
     fetchTweets();
   }, [currentAccount, appStatus]);
 
-  // const checkIfWalletIsConnected = async () => {
-  //   const provider = await detectEthereumProvider();
-
-  //   if (provider !== window.ethereum) return;
-  //   try {
-  //     ethereum
-  //       .request({ method: "eth_accounts" })
-  //       .then(handleAccountsChanged)
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  //   ethereum.on("accountsChanged", handleAccountsChanged);
-
-  // const connectToWallet = async () => {
-  //   const provider = await detectEthereumProvider();
-
-  //   if (provider !== window.ethereum) return setAppStatus("noMetaMask");
-  //   try {
-  //     ethereum
-  //       .request({ method: "eth_requestAccounts" })
-  //       .then(handleAccountsChanged)
-  //       .catch((err) => {
-  //         if (err.code === 4001) {
-  //           console.log("Please connect to MetaMask.");
-  //         } else {
-  //           console.log(err);
-  //         }
-  //       });
-  //   } catch (error) {
-  //     setAppStatus("error");
-  //   }
-  // };
-
-  // const handleAccountsChanged = (accounts) => {
-  //   if (accounts.length === 0) {
-  //     router.push("/");
-  //     setAppStatus("notConnected");
-  //   } else {
-  //     setAppStatus("connected");
-  //     setCurrentAccount(accounts[0]);
-  //     createUserAccount(accounts[0]);
-  //   }
-  // };
-
-  /**
-   * Checks if there is an active wallet connection
-   */
   const checkIfWalletIsConnected = async () => {
     if (!window.ethereum) return setAppStatus("noMetaMask");
     try {
@@ -96,9 +44,6 @@ export const TwitterProvider = ({ children }) => {
     }
   };
 
-  /**
-   * Initiates MetaMask wallet connection
-   */
   const connectToWallet = async () => {
     if (!window.ethereum) return setAppStatus("noMetaMask");
     try {
@@ -119,8 +64,6 @@ export const TwitterProvider = ({ children }) => {
       setAppStatus("error");
     }
   };
-
-  ///////////////
 
   const createUserAccount = async (userWalletAddress = currentAccount) => {
     const provider = await detectEthereumProvider();
