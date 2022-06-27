@@ -9,7 +9,11 @@ function ProfileTweet({ tweet, author }) {
     <div className="p-4 flex flex-col border-b-2 border-neutral-700">
       {/* Header */}
       <div className="flex space-x-2">
-        <div className="h-12 w-12 rounded-full flex justify-center items-center overflow-hidden">
+        <div
+          className={`${
+            author.isProfileImageNft && "border-2 border-orange-600"
+          } h-12 w-12 rounded-full flex justify-center items-center overflow-hidden`}
+        >
           <img className="shrink-0" src={author.profileImage}></img>
         </div>
         <div className="flex flex-col">
@@ -34,15 +38,15 @@ function ProfileTweet({ tweet, author }) {
       <div className="flex p-4 justify-around cursor-default">
         <div className="flex space-x-1">
           <AiOutlineHeart className="h-6 w-6" />
-          <h1>3</h1>
+          <h1></h1>
         </div>
         <div className="flex space-x-1">
           <FaRegComment className="h-5 w-5" />
-          <h1>3</h1>
+          <h1></h1>
         </div>
         <div className="flex space-x-1">
           <BsBookmarkHeart className="h-5 w-5" />
-          <h1>3</h1>
+          <h1></h1>
         </div>
       </div>
     </div>

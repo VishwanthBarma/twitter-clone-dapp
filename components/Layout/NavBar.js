@@ -81,11 +81,14 @@ function NavBar() {
           </button>
         </div>
 
-
         <Link href={"/profile"} passHref>
           <a>
             <div className="md:p-3 mb-10 cursor-pointer flex items-center justify-center space-x-1">
-              <div className="bg-white shrink-0 h-10 w-10 rounded-full flex justify-center items-center overflow-hidden">
+              <div
+                className={`${
+                  currentUser.isProfileImageNft && "border-4 border-orange-600"
+                } bg-white shrink-0 h-10 w-10 rounded-full flex justify-center items-center overflow-hidden`}
+              >
                 <img className="shirink-0" src={currentUser.profileImage}></img>
               </div>
               <div className="hidden md:inline overflow-x-scroll">
@@ -97,8 +100,7 @@ function NavBar() {
             </div>
           </a>
         </Link>
-
-        </div>
+      </div>
 
       <Modal
         isOpen={Boolean(router.query.mint)}

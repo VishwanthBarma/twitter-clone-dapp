@@ -5,6 +5,28 @@ import FinishedState from "./FinishedState";
 import InitialState from "./InitialState";
 import LoadingState from "./LoadingState";
 import { pinJSONToIPFS, pinFileToIPFS } from "../../lib/pinata";
+import { client } from "../../lib/client";
+import { ethers } from "ethers";
+import { contractAddress, contractABI } from "../../lib/constants";
+
+let metamask;
+
+if (typeof window !== "undefined") {
+  metamask = window.ethereum;
+}
+
+const getEthereumContract = async () => {
+  if (!metamask) return;
+  const provider = new ethers.providers.Web3Provider(metamask);
+  const signer = provider.getSigner();
+  const transactionContract = new ethers.Contract(
+    contractAddress,
+    contractABI,
+    signer
+  );
+
+  return transactionContract;
+};
 
 function ProfileImageMinter() {
   const { currentUser, currentAccount } = useContext(TwitterContext);
@@ -24,7 +46,39 @@ function ProfileImageMinter() {
     };
 
     const ipfsImageHash = await pinFileToIPFS(profileImage, pinataMetadata);
-    
+
+    await client
+      .patch(currentAccount)
+      .set({ profileImage: ipfsImageHash })
+      .set({ isProfileImageNft: true })
+      .commit();
+
+    const imageMetadata = {
+      name: name,
+      description: description,
+      image: `ipfs://${ipfsImageHash}`,
+    };
+
+    const ipfsJsonHash = await pinJSONToIPFS(imageMetadata);
+
+    const contract = await getEthereumContract();
+
+    const transactionParameters = {
+      to: contractAddress,
+      from: currentAccount,
+      data: await contract.mint(currentAccount, `ipfs://${ipfsJsonHash}`),
+    };
+
+    try {
+      await metamask.request({
+        method: "eth_sendTransaction",
+        params: [transactionParameters],
+      });
+    } catch (error) {
+      console.log(error);
+    }
+
+    setStatus("finished");
   };
 
   const modalChildren = (modalStatus = status) => {

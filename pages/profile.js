@@ -18,7 +18,11 @@ function profile() {
           <div className="absolute bg-slate-800 h-[12rem] flex items-center justify-center top-0 w-full">
             <h1>No Cover Photo</h1>
           </div>
-          <div className="bg-slate-300 absolute bottom-3 left-5 h-36 w-36 rounded-full flex justify-center items-center overflow-hidden">
+          <div
+            className={`${
+              currentUser.isProfileImageNft && "border-4 border-orange-600"
+            } bg-slate-300 absolute bottom-3 left-5 h-36 w-36 rounded-full flex justify-center items-center overflow-hidden`}
+          >
             <img src={currentUser.profileImage}></img>
           </div>
           <div className="absolute bottom-10 right-12">

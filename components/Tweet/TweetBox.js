@@ -53,7 +53,11 @@ function TweetBox() {
   return (
     <div className="flex p-4 flex-col space-y-2 border-b-2 border-neutral-700">
       <div className="flex space-x-3">
-        <div className="bg-white shrink-0 h-12 w-12 rounded-full flex justify-center items-center overflow-hidden">
+        <div
+          className={`${
+            currentUser.isProfileImageNft && "border-4 border-orange-600"
+          } bg-white shrink-0 h-14 w-14 rounded-full flex justify-center items-center overflow-hidden`}
+        >
           <img className="shirink-0" src={currentUser.profileImage}></img>
         </div>
         <form className="w-full flex flex-col space-y-2">
