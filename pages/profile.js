@@ -5,7 +5,7 @@ import ProfileTweet from "../components/Tweet/ProfileTweet";
 import ProfileTweets from "../components/Tweet/ProfileTweets";
 import { TwitterContext } from "../context/TwitterContext";
 
-function profile() {
+function Profile() {
   const { currentUser, currentAccount } = useContext(TwitterContext);
 
   return (
@@ -46,4 +46,4 @@ function profile() {
   );
 }
 
-export default profile;
+export default Profile;

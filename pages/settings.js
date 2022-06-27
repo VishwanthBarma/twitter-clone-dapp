@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { TwitterContext } from "../context/TwitterContext";
 import { client } from "../lib/client";
 
-function settings() {
+function Settings() {
   const [input, setInput] = useState("");
   const { currentAccount, getCurrentUserDetails, setAppStatus } =
     useContext(TwitterContext);
@@ -43,4 +43,4 @@ function settings() {
   );
 }
 
-export default settings;
+export default Settings;
