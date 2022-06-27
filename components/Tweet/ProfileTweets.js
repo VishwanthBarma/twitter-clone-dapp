@@ -22,7 +22,7 @@ function ProfileTweets() {
   return (
     <div>
       {tweets?.map((tweet) => (
-        <ProfileTweet tweet={tweet} author={author} />
+        <ProfileTweet key={tweet.timestamp} tweet={tweet} author={author} />
       ))}
     </div>
   );

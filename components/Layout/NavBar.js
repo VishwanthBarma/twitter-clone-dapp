@@ -47,7 +47,7 @@ function NavBar() {
 
           <div className="flex flex-col space-y-2 justify-center ml-auto mr-auto">
             {navData.map((item) => (
-              <Link href={item.path} passHref>
+              <Link key={item.path} href={item.path} passHref>
                 <a>
                   <div className="flex space-x-2 items-center justify-start hover:bg-neutral-800 rounded-lg cursor-pointer md:w-36 p-3 lg:w-40">
                     {router.pathname.split("/")[1] === item.path.split("/")[1]

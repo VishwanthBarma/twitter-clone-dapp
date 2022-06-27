@@ -5,7 +5,6 @@ import { FaComment, FaRegComment } from "react-icons/fa";
 import { BsBookmarkHeart, BsBookmarkHeartFill } from "react-icons/bs";
 
 function TweetPost({ data }) {
-  console.log(data);
   return (
     <div className="p-4 flex flex-col border-b-2 border-neutral-700">
       {/* Header */}

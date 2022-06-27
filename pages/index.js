@@ -23,7 +23,7 @@ export default function Home() {
         <TweetBox />
         <div>
           {tweets?.map((tweet) => (
-            <TweetPost data={tweet} />
+            <TweetPost key={tweet.author.walletAddress} data={tweet} />
           ))}
         </div>
       </div>
