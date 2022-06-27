@@ -5,7 +5,8 @@ import { client } from "../../lib/client";
 
 function TweetBox() {
   const [tweetMessage, setTweetMessage] = useState("");
-  const { currentAccount, currentUser } = useContext(TwitterContext);
+  const { currentAccount, currentUser, fetchTweets } =
+    useContext(TwitterContext);
   const [loading, setLoading] = useState(false);
 
   const postTweet = async (event) => {
@@ -47,6 +48,7 @@ function TweetBox() {
       });
 
     setTweetMessage("");
+    fetchTweets();
     setLoading(false);
   };
 
@@ -77,7 +79,7 @@ function TweetBox() {
               send
             </button>
           ) : (
-            <ThreeBounce size={10} color="orange" />
+            <ThreeBounce size={20} color="#03bafc" className="self-end mr-5" />
           )}
         </form>
       </div>
