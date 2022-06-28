@@ -58,7 +58,7 @@ function Layout({ children }) {
   const noMetaMaskFound = (
     <div className="flex flex-col h-screen w-screen items-center justify-center space-y-3">
       <Image src={metamaskLogo} height={200} width={200} />
-      <div className="border-[1px] border-red-500 p-3 px-5 rounded-xl">
+      <div className="border-[1px] border-red-500 p-3 px-5 rounded-xl text-white">
         <a
           target="_blank"
           rel="noreferrer"
